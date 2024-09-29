@@ -10,7 +10,7 @@ const allPhones = async (searchText='a', isShow) => {
 allPhones()
 
 
-const displayData = (mobilesInfo) => {
+const displayData = (mobilesInfo, isShow) => {
   const phoneCardContainer = document.getElementById("phone-card-container");
   phoneCardContainer.innerText = "";
 
@@ -50,7 +50,7 @@ const displayData = (mobilesInfo) => {
               <p class="text-lg font-normal leading-[30px]">There are many variations of passages of available, but the majority have suffered</p>
                <h2 class="card-title text-[25px] font-bold text-[#403F3F] mt-2 mb-4"> $999</h2>
               <div class="card-actions">
-                <button class="px-[25px] py-[9px] rounded-lg bg-[#0D6EFD] text-[#ffff]">Show Details</button>
+                <button class="px-[25px] py-[9px] rounded-lg bg-[#0D6EFD] text-[#ffff]" onclick="my_modal_1.showModal()">Show Details</button>
               </div>
             </div>
           </div>
@@ -90,4 +90,12 @@ const loading = (data) => {
   else {
     loadingContainer.classList.add("hidden")
   }
+}
+
+const infoButton = async(id) => {
+  const info = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+  const data = await info.json()
+  console.log(data.data);
+  
+
 }
