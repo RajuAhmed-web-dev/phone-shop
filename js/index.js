@@ -1,5 +1,5 @@
 
-const allPhones = async (searchText = 'a', isShow) => {
+const allPhones = async (searchText='a', isShow) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
@@ -69,15 +69,15 @@ const searchItem = (isShow) => {
     allPhones('a', isShow);
   }
   else {
-    allPhones(searchText, isShow);
+    allPhones(searchText, isShow)
   }
 }
 
 
 
 const showAllClick = () => {
-  const isShow = true;
- searchItem(isShow)
+  const isShow = true
+  searchItem(isShow)
 }
 
 
