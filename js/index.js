@@ -1,5 +1,5 @@
 
-const allPhones = async (searchText='a', isShow) => {
+const allPhones = async (searchText = 'a', isShow) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
@@ -38,7 +38,7 @@ const displayData = (mobilesInfo, isShow) => {
   phones.forEach((mobileInfo) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <div class="card bg-base-100 max-w-[364px] h-[633px] border-[1px] border-[#CFCFCF]">
+        <div class="card bg-base-100 max-w-[364px] h-[633px]  border-[1px] border-[#CFCFCF]">
             <figure class="mt-12">
               <img
                 src="${mobileInfo.image}"
@@ -92,10 +92,10 @@ const loading = (data) => {
   }
 }
 
-const infoButton = async(id) => {
+const infoButton = async (id) => {
   const info = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
   const data = await info.json()
-console.log(data);
+  console.log(data);
 
 
   const modalInfo = document.getElementById('modal-body');
