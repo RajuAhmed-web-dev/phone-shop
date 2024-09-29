@@ -1,22 +1,41 @@
 
-const allPhones = async (searchText) => {
+const allPhones = async (searchText = 'a', isShow) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
   const data = await res.json();
-  displayData(data.data);
+  displayData(data.data, isShow);
 };
 
-allPhones('a')
+allPhones()
 
 
 const displayData = (mobilesInfo) => {
   const phoneCardContainer = document.getElementById("phone-card-container");
+  phoneCardContainer.innerText = "";
 
-  phoneCardContainer.innerText = ''
 
-  mobilesInfo.slice(0, 9).forEach((mobileInfo) => {
+  const showAllContainer = document.getElementById("show-all-container");
+  if (mobilesInfo.length <= 9) {
+    showAllContainer.classList.add("hidden");
+  } else {
+    showAllContainer.classList.remove("hidden");
+  }
 
+
+  let phones;
+
+  if (!isShow) {
+    phones = mobilesInfo.slice(0, 9)
+  }
+  else {
+    phones = mobilesInfo
+    showAllContainer.classList.add("hidden");
+  }
+
+
+
+  phones.forEach((mobileInfo) => {
     const div = document.createElement("div");
     div.innerHTML = `
         <div class="card bg-base-100 max-w-[364px] h-[633px] border-[1px] border-[#CFCFCF]">
@@ -41,12 +60,26 @@ const displayData = (mobilesInfo) => {
   loading(false)
 };
 
-const searchImplement = () => {
+const searchItem = (isShow) => {
   loading(true)
   const searchInput = document.getElementById('search-input')
   const searchText = searchInput.value
-  allPhones(searchText)
+
+  if (searchText.length === 0) {
+    allPhones('a', isShow);
+  }
+  else {
+    allPhones(searchText, isShow);
+  }
 }
+
+
+
+const showAllClick = () => {
+  const isShow = true;
+ searchItem(isShow)
+}
+
 
 
 const loading = (data) => {
