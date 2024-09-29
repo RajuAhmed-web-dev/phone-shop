@@ -114,19 +114,21 @@
                     All</button>
             </div>
 
-            <!-- Open the modal using ID.showModal() method -->
-            <dialog id="my_modal_1" class="modal">
-                <div class="modal-box">
-                    <h3 class="text-lg font-bold">Hello!</h3>
-                    <p class="py-4">Press ESC key or click the button below to close</p>
+            <!-- The button to open modal -->
+            
+
+            <!-- Put this part before tag -->
+            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+            <div class="modal" role="dialog">
+                <div class="modal-box max-w-[600px] h-[1200px] ">
+                   <div id="modal-body">
+
+                   </div>
                     <div class="modal-action">
-                        <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
-                        </form>
+                        <label for="my_modal_6" class="btn bg-[#DC3545] text-white">Close</label>
                     </div>
                 </div>
-            </dialog>
+            </div>
         </section>
     </main>
 

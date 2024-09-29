@@ -50,7 +50,7 @@ const displayData = (mobilesInfo, isShow) => {
               <p class="text-lg font-normal leading-[30px]">There are many variations of passages of available, but the majority have suffered</p>
                <h2 class="card-title text-[25px] font-bold text-[#403F3F] mt-2 mb-4"> $999</h2>
               <div class="card-actions">
-                <button class="px-[25px] py-[9px] rounded-lg bg-[#0D6EFD] text-[#ffff]" onclick="my_modal_1.showModal()">Show Details</button>
+                <label for="my_modal_6" class="px-[25px] py-[9px] rounded-lg bg-[#0D6EFD] text-[#ffff]" onclick="infoButton('${mobileInfo.slug}')">open modal</label>
               </div>
             </div>
           </div>
@@ -95,7 +95,26 @@ const loading = (data) => {
 const infoButton = async(id) => {
   const info = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
   const data = await info.json()
-  console.log(data.data);
-  
+console.log(data);
+
+
+  const modalInfo = document.getElementById('modal-body');
+  modalInfo.innerText = ''
+  const div = document.createElement('div')
+  div.innerHTML = `
+  <img class="max-w-[268px] max-h-[381px] mx-auto mb-4" src="${data.data.image}" alt=""/>
+  <h2 class="text-[#403F3F] text-xl font-bold">${data.data.name}</h2>
+  <p class="text-sm font-medium">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+  <p class="text-sm font-medium">Storage : ${data.data.mainFeatures.storage}</p>
+  <p class="text-sm font-medium">Display Size : ${data.data.mainFeatures.displaySize}</p>
+  <p class="text-sm font-medium">Chipset : ${data.data.mainFeatures.chipSet}</p>
+  <p class="text-sm font-medium">Memory : ${data.data.mainFeatures.memory}</p>
+  <p class="text-sm font-medium">Slug : ${data.data.slug}</p>
+  <p class="text-sm font-medium">Release data : ${data.data.releaseDate}</p>
+  <p class="text-sm font-medium">Brand :  ${data.data.brand}</p>
+  <p class="text-sm font-medium">GPS : ${data.data.others.GPS}</p>
+
+  `
+  modalInfo.appendChild(div)
 
 }
